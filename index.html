@@ -257,7 +257,7 @@
             50% { opacity: 0.8; transform: translateY(-5px); }
         }
 
-        /* --- Background Video --- */
+        /* --- Background Video/Image --- */
         #bg-video-wrapper {
             position: fixed;
             top: 0;
@@ -267,12 +267,14 @@
             z-index: -1;
             opacity: 0;
             transition: opacity 2s ease;
+            background-image: url('perla.jpg'); /* Se asume perla.jpg, cambiar si es necesario */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         #bg-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            display: none; /* Ocultamos el video anterior */
         }
 
         /* --- Main Content Layout --- */
@@ -725,7 +727,7 @@
     <!-- Intro Video Overlay -->
     <div id="intro-overlay">
         <video id="intro-video" muted playsinline>
-            <source src="copas.mp4" type="video/mp4">
+            <source src="castillo.mp4" type="video/mp4">
         </video>
     </div>
 
@@ -971,6 +973,9 @@
             
             // Wait for flap to open, then slide card, then show content
             setTimeout(() => {
+                // Show pearl background image
+                bgVideoWrapper.style.opacity = '1';
+                
                 setTimeout(() => {
                     envelopeWrapper.style.opacity = '0';
                     setTimeout(() => {
