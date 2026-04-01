@@ -15,17 +15,16 @@
     <style>
         /* --- CSS Variables & Base Styles --- */
         :root {
-            /* Sunset Beach Palette */
-            --bg-ivory: #F7E0D8; /* Pale Peach */
+            /* Blue & Ivory Palette */
+            --bg-ivory: #F8F7F2; /* Marfil muy claro */
             --pearl: #FFFFFF;
-            --gold: #8699A8; /* Steel Blue */
-            --gold-light: #CED8E3; /* Light Blue */
-            --gold-dark: #7B8F9A; /* Slate Blue */
-            --text-dark: #594139;
-            --accent-pink: #E9B2B2; /* Dusty Rose */
-            --real-gold: #C5A059; /* Nuevo Dorado */
+            --blue-soft: #B8C9D9; /* Celeste de la imagen */
+            --blue-medium: #8DA7C1; /* Azul medio */
+            --blue-dark: #5C7A99; /* Azul más profundo para contraste */
+            --pink-soft: #E5C9C9; /* Rosa pastel de la imagen */
+            --text-dark: #2C3E50; /* Gris azulado muy oscuro para el texto */
             --glass: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(134, 153, 168, 0.25);
+            --glass-border: rgba(184, 201, 217, 0.3); /* Borde en celeste suave */
         }
 
         * {
@@ -369,10 +368,9 @@
             position: absolute;
             left: 0;
             top: 0;
-            width: 1px;
+            width: 2px;
             height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-            opacity: 0.4;
+            background: linear-gradient(to bottom, transparent, var(--blue-soft), transparent);
         }
 
         .timeline-item {
@@ -382,16 +380,17 @@
             padding-left: 35px;
         }
 
-        .timeline-item::after {
+        .timeline-item::before {
             content: '';
             position: absolute;
-            left: -5px;
-            top: 12px;
-            width: 11px;
-            height: 11px;
-            background: var(--gold);
+            left: -24px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--blue-medium);
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(184, 201, 217, 0.3);
         }
 
         .img-placeholder {
@@ -486,7 +485,7 @@
             width: 90px;
             height: 90px;
             background: rgba(255, 255, 255, 0.95);
-            border: 1px solid var(--gold-light);
+            border: 1px solid var(--blue-soft);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -570,27 +569,27 @@
             text-decoration: none;
             font-weight: 700;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-top: 2rem;
-            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
             letter-spacing: 2px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
         }
 
         .btn.primary {
-            background: var(--gold);
+            background: var(--blue-medium);
             color: white;
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+            box-shadow: 0 10px 20px rgba(141, 167, 193, 0.2);
         }
 
         .btn.secondary {
-            border: 1.5px solid var(--gold);
-            color: var(--gold-dark);
-            background: transparent;
+            background: white;
+            color: var(--blue-dark);
+            border: 2px solid var(--blue-soft);
         }
 
         .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         /* --- Bank Details --- */
@@ -810,7 +809,7 @@
         <section class="reveal">
             <div class="event-card glass-card">
                 <div class="icon-circle">
-                    <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dark)" stroke-width="1.5" class="church-anim"><path d="M12 2L9 5V8H5V22H19V8H15V5L12 2Z"/></svg>
+                    <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="var(--blue-medium)" stroke-width="1.5" class="church-anim"><path d="M12 2L9 5V8H5V22H19V8H15V5L12 2Z"/></svg>
                 </div>
                 <h3 class="section-title">Ceremonia Religiosa</h3>
                 <p class="text-2xl mb-3 font-serif">13 de Marzo, 2027</p>
@@ -821,7 +820,7 @@
 
             <div class="event-card glass-card">
                 <div class="icon-circle">
-                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cheers-anim">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="var(--blue-medium)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cheers-anim">
                         <!-- Left Glass -->
                         <g class="glass-left">
                             <path d="M6 3h5v5c0 1.5-1 3-2.5 3S6 9.5 6 8V3zM8.5 11v7M7 21h3" />
@@ -831,7 +830,7 @@
                             <path d="M18 3h-5v5c0 1.5 1 3 2.5 3s2.5-1.5 2.5-3V3zM15.5 11v7M14 21h3" />
                         </g>
                         <!-- Sparkles -->
-                        <path d="M12 2v2M14 4l-1 1M10 4l1 1" class="sparkle-anim" stroke-width="2" />
+                        <path d="M12 2v2M14 4l-1 1M10 4l1 1" class="sparkle-anim" stroke="var(--pink-soft)" stroke-width="2" />
                     </svg>
                 </div>
                 <h3 class="section-title">Fiesta</h3>
