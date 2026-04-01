@@ -84,8 +84,8 @@
             width: 90%;
             max-width: 500px;
             height: 350px;
-            background: #FDFDFB;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            background: #FFFFFF;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
             transform-style: preserve-3d;
             cursor: pointer;
             transition: transform 0.5s ease;
@@ -102,13 +102,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #FDFDFB;
+            background: #FFFFFF;
             clip-path: polygon(0 0, 100% 0, 50% 55%);
             z-index: 4;
             transform-origin: top;
             transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid rgba(0,0,0,0.02);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.01);
         }
 
         .flap-bottom {
@@ -117,10 +116,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #FDFDFB;
+            background: #FFFFFF;
             clip-path: polygon(0 100%, 100% 100%, 50% 45%);
             z-index: 3;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.02);
         }
 
         .flap-left {
@@ -129,7 +127,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: #FDFDFB;
+            background: #FFFFFF;
             clip-path: polygon(0 0, 0 100%, 45% 50%);
             z-index: 2;
         }
@@ -140,7 +138,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: #FDFDFB;
+            background: #FFFFFF;
             clip-path: polygon(100% 0, 100% 100%, 55% 50%);
             z-index: 2;
         }
@@ -220,6 +218,7 @@
             bottom: 10px;
             left: 10px;
             width: 140px;
+            opacity: 0.3; /* Más sutil */
         }
 
         .coral-right {
@@ -227,6 +226,7 @@
             right: 10px;
             width: 120px;
             transform: scaleX(-1);
+            opacity: 0.3; /* Más sutil */
         }
 
         .magic-text {
