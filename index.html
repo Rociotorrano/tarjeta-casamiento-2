@@ -4,27 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ignacio y Rocío | Nuestra Boda</title>
-    <meta name="description" content="Estás oficialmente invitado a la boda de Ignacio y Rocío. ¡Únete a nosotros para una celebración mágica!">
+    <title>Nuestra Boda</title>
+    <meta name="description"
+        content="Estás oficialmente invitado a la boda¡Únete a nosotros para una celebración mágica!">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cinzel:wght@400..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cinzel:wght@400..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
 
     <style>
-        /* --- CSS Variables & Base Styles --- */
         :root {
-            /* Blue & Ivory Palette */
-            --bg-ivory: #F8F7F2; /* Marfil muy claro */
+            /* Floral Green Palette */
+            --bg-ivory: #F9F9F4;
             --pearl: #FFFFFF;
-            --blue-soft: #B8C9D9; /* Celeste de la imagen */
-            --blue-medium: #8DA7C1; /* Azul medio */
-            --blue-dark: #5C7A99; /* Azul más profundo para contraste */
-            --pink-soft: #E5C9C9; /* Rosa pastel de la imagen */
-            --text-dark: #2C3E50; /* Gris azulado muy oscuro para el texto */
+            --blue-soft: #d3e0dc;
+            /* green-soft */
+            --blue-medium: #a4c3b8;
+            /* green-medium */
+            --blue-dark: #6b9080;
+            /* green-dark */
+            --pink-soft: #f2e1e1;
+            /* soft-blush */
+            --text-dark: #2c3e34;
+            /* dark-green */
             --glass: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(184, 201, 217, 0.3); /* Borde en celeste suave */
+            --glass-border: rgba(164, 195, 184, 0.3);
+            --envelope-watercolor: linear-gradient(135deg, #eaf2ed 0%, #cde4df 40%, #a4c3b8 100%);
+            --envelope-flap: linear-gradient(to bottom, #dbeae4 0%, #c1dbd3 100%);
+            --envelope-flap-down: linear-gradient(to top, #b4d1c7 0%, #9cbdae 100%);
+            --envelope-flap-side: linear-gradient(to right, #cfdfd8 0%, #b2ccc1 100%);
+            --envelope-flap-side-right: linear-gradient(to left, #cfdfd8 0%, #b2ccc1 100%);
         }
 
         * {
@@ -83,8 +95,8 @@
             width: 90%;
             max-width: 500px;
             height: 350px;
-            background: #FFFFFF;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            background: var(--envelope-watercolor);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
             transform-style: preserve-3d;
             cursor: pointer;
             transition: transform 0.5s ease;
@@ -101,13 +113,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #FFFFFF;
+            background: var(--envelope-flap);
             clip-path: polygon(0 0, 100% 0, 50% 55%);
-            z-index: 6; /* Delante de la tarjeta cuando está cerrado */
+            z-index: 6;
+            /* Delante de la tarjeta cuando está cerrado */
             transform-origin: top;
             transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid rgba(0,0,0,0.01);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.01);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .flap-bottom {
@@ -116,10 +129,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #FFFFFF;
+            background: var(--envelope-flap-down);
             clip-path: polygon(0 100%, 100% 100%, 50% 45%);
-            z-index: 5; /* Delante de la tarjeta siempre */
-            box-shadow: 0 -10px 20px rgba(0,0,0,0.05);
+            z-index: 5;
+            /* Delante de la tarjeta siempre */
+            box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.05);
         }
 
         .flap-left {
@@ -128,9 +142,10 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: #FFFFFF;
+            background: var(--envelope-flap-side);
             clip-path: polygon(0 0, 0 100%, 45% 50%);
-            z-index: 5; /* Delante de la tarjeta siempre */
+            z-index: 5;
+            /* Delante de la tarjeta siempre */
         }
 
         .flap-right {
@@ -139,9 +154,10 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: #FFFFFF;
+            background: var(--envelope-flap-side-right);
             clip-path: polygon(100% 0, 100% 100%, 55% 50%);
-            z-index: 5; /* Delante de la tarjeta siempre */
+            z-index: 5;
+            /* Delante de la tarjeta siempre */
         }
 
         .pearl {
@@ -151,16 +167,16 @@
             transform: translate(-50%, -50%);
             width: 45px;
             height: 45px;
-            background: radial-gradient(circle at 30% 30%, #FFFFFF, #BCC8D0, #8699A8);
+            background: radial-gradient(circle at 30% 30%, #FFFFFF, #D5E1DF, #A4B8B0);
             border-radius: 50%;
             z-index: 10;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset -2px -2px 10px rgba(0,0,0,0.1);
-            border: 2px solid rgba(255,255,255,0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset -2px -2px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.4);
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
         }
 
         .pearl::after {
-            content: 'clique para abrir';
+            content: 'abrir';
             position: absolute;
             top: -40px;
             left: 50%;
@@ -168,7 +184,7 @@
             width: 150px;
             text-align: center;
             font-family: 'Dancing Script', cursive;
-            color: #4A6076;
+            color: var(--blue-dark);
             font-size: 1.2rem;
             opacity: 0.8;
             pointer-events: none;
@@ -176,7 +192,8 @@
 
         .envelope.open .flap-top {
             transform: rotateX(180deg);
-            z-index: 0; /* Pasa atrás de todo al abrirse */
+            z-index: 0;
+            /* Pasa atrás de todo al abrirse */
             transition: transform 1s ease-in-out, z-index 0s 0.5s;
         }
 
@@ -193,7 +210,8 @@
             width: 90%;
             height: 95%;
             background: white;
-            z-index: 1; /* Siempre detrás de las solapas frontales */
+            z-index: 1;
+            /* Siempre detrás de las solapas frontales */
             padding: 20px;
             text-align: center;
             display: flex;
@@ -203,13 +221,15 @@
             padding-top: 60px;
             transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid #F0F0F0;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
         }
 
         .envelope.open .envelope-card {
             transform: translate(-50%, -115%);
-            transition-delay: 0.8s; /* Espera a que la solapa esté casi abierta */
-            z-index: 2; /* Pero sigue detrás de las solapas inferiores laterales */
+            transition-delay: 0.8s;
+            /* Espera a que la solapa esté casi abierta */
+            z-index: 2;
+            /* Pero sigue detrás de las solapas inferiores laterales */
         }
 
         .coral-decoration {
@@ -223,7 +243,8 @@
             bottom: 10px;
             left: 10px;
             width: 140px;
-            opacity: 0.3; /* Más sutil */
+            opacity: 0.3;
+            /* Más sutil */
         }
 
         .coral-right {
@@ -231,7 +252,8 @@
             right: 10px;
             width: 120px;
             transform: scaleX(-1);
-            opacity: 0.3; /* Más sutil */
+            opacity: 0.3;
+            /* Más sutil */
         }
 
         .magic-text {
@@ -253,11 +275,20 @@
         }
 
         @keyframes breathe {
-            0%, 100% { opacity: 0.3; transform: translateY(0); }
-            50% { opacity: 0.8; transform: translateY(-5px); }
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: translateY(-5px);
+            }
         }
 
-        /* --- Background Video/Image --- */
+        /* --- Background Video --- */
         #bg-video-wrapper {
             position: fixed;
             top: 0;
@@ -267,14 +298,14 @@
             z-index: -1;
             opacity: 0;
             transition: opacity 2s ease;
-            background-image: url('perla.jpg'); /* Se asume perla.jpg, cambiar si es necesario */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            overflow: hidden;
         }
 
         #bg-video {
-            display: none; /* Ocultamos el video anterior */
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* --- Main Content Layout --- */
@@ -297,7 +328,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 10rem 1.5rem; /* Aumentado el padding vertical de 6rem a 10rem */
+            padding: 10rem 1.5rem;
+            /* Aumentado el padding vertical de 6rem a 10rem */
             background: transparent;
         }
 
@@ -403,7 +435,7 @@
             margin-bottom: 1.5rem;
             overflow: hidden;
             border: 6px solid white;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
             transition: transform 0.4s ease;
         }
 
@@ -468,15 +500,27 @@
         }
 
         @media (max-width: 768px) {
-            .countdown { gap: 1rem; }
-            .time-box span { font-size: 2.5rem; }
-            .countdown-title { font-size: 2rem; }
-            .countdown-card { padding: 3rem 1.5rem; }
+            .countdown {
+                gap: 1rem;
+            }
+
+            .time-box span {
+                font-size: 2.5rem;
+            }
+
+            .countdown-title {
+                font-size: 2rem;
+            }
+
+            .countdown-card {
+                padding: 3rem 1.5rem;
+            }
         }
 
         /* --- Events --- */
         .event-card {
-            margin-bottom: 6rem; /* Aumentado el espacio entre tarjetas */
+            margin-bottom: 6rem;
+            /* Aumentado el espacio entre tarjetas */
         }
 
         .event-card:last-child {
@@ -493,39 +537,77 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 2.5rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
         }
 
         .cheers-anim .glass-left {
             transform-origin: 8.5px 21px;
             animation: clink-left 2.5s infinite ease-in-out;
         }
+
         .cheers-anim .glass-right {
             transform-origin: 15.5px 21px;
             animation: clink-right 2.5s infinite ease-in-out;
         }
+
         @keyframes clink-left {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(8deg); }
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(8deg);
+            }
         }
+
         @keyframes clink-right {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(-8deg); }
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(-8deg);
+            }
         }
+
         .church-anim {
             animation: church-sway 3s infinite ease-in-out;
             transform-origin: bottom center;
         }
+
         @keyframes church-sway {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
         }
+
         .sparkle-anim {
             animation: sparkle-fade 2s infinite ease-in-out;
         }
+
         @keyframes sparkle-fade {
-            0%, 45%, 100% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1.2); }
+
+            0%,
+            45%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
 
         /* --- Dress Code --- */
@@ -591,7 +673,7 @@
 
         .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         /* --- Bank Details --- */
@@ -622,13 +704,23 @@
 
         .gift-icon-anim {
             animation: giftBounce 2s infinite ease-in-out;
-            filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.3));
+            filter: drop-shadow(0 5px 15px rgba(107, 144, 128, 0.4));
         }
 
         @keyframes giftBounce {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            25% { transform: translateY(-10px) rotate(-5deg); }
-            75% { transform: translateY(-10px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+
+            25% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+
+            75% {
+                transform: translateY(-10px) rotate(5deg);
+            }
         }
 
         .bank-row {
@@ -645,13 +737,13 @@
         }
 
         .bank-row:hover {
-            border-color: var(--gold-light);
+            border-color: var(--blue-soft);
         }
 
         .bank-info label {
             display: block;
             font-size: 0.75rem;
-            color: var(--gold-dark);
+            color: var(--blue-dark);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-bottom: 0.5rem;
@@ -661,7 +753,7 @@
         .copy-btn {
             background: none;
             border: none;
-            color: var(--gold);
+            color: var(--blue-dark);
             cursor: pointer;
             padding: 12px;
             border-radius: 10px;
@@ -669,11 +761,12 @@
         }
 
         .copy-btn:hover {
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(107, 144, 128, 0.08);
         }
 
         /* --- RSVP Form --- */
-        input[type="text"], textarea {
+        input[type="text"],
+        textarea {
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             border: 1.5px solid #ececec;
@@ -685,9 +778,10 @@
             transition: border-color 0.3s ease;
         }
 
-        input:focus, textarea:focus {
+        input:focus,
+        textarea:focus {
             outline: none;
-            border-color: var(--gold);
+            border-color: var(--blue-medium);
         }
 
         /* --- Footer --- */
@@ -701,7 +795,9 @@
             padding: 6rem 1rem;
         }
 
-        .text-center { text-align: center; }
+        .text-center {
+            text-align: center;
+        }
 
         /* --- Animations --- */
         .reveal {
@@ -715,9 +811,15 @@
             transform: translateY(0);
         }
 
+
         @media (max-width: 768px) {
-            .section-title { font-size: 2.2rem; }
-            .happily-ever-after { font-size: 2.8rem; }
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .happily-ever-after {
+                font-size: 2.8rem;
+            }
         }
     </style>
 </head>
@@ -736,9 +838,9 @@
         <div class="envelope" id="main-envelope" onclick="openEnvelope()">
             <div class="envelope-card">
                 <p class="magic-text">Donde comienza la magia</p>
-                <p class="old-money-title" style="font-size: 1rem; letter-spacing: 5px;">Ignacio & Rocío</p>
+                <p class="old-money-title" style="font-size: 1rem; letter-spacing: 5px;"></p>
             </div>
-            
+
             <div class="flap-left"></div>
             <div class="flap-right"></div>
             <div class="flap-bottom"></div>
@@ -749,17 +851,19 @@
 
     <!-- Main Content Container -->
     <div id="bg-video-wrapper">
-        <video id="bg-video" loop muted playsinline>
-            <source src="fondo.mp4" type="video/mp4">
+        <video id="bg-video" loop muted playsinline autoplay>
+            <source src="flores.mp4" type="video/mp4">
         </video>
     </div>
     <main id="main-content">
         <!-- Hero Section -->
         <section class="hero reveal">
             <div class="glass-card">
-                <p class="intro-text">Como en los cuentos que nacen en lo profundo del mar, nuestras almas se encontraron en el momento perfecto. Hoy, nuestro sueño se hace realidad y queremos que seas parte de nuestro...</p>
+                <p class="intro-text">Como las flores que nacen en el primer día de primavera, nuestras almas se
+                    encontraron en el momento perfecto. Hoy, nuestro sueño se hace realidad y queremos que seas parte de
+                    nuestro...</p>
                 <h1 class="happily-ever-after">Y vivieron felices para siempre</h1>
-                <p class="old-money-title mt-8" style="font-size: 0.9rem; margin-top: 2.5rem;">Ignacio & Rocío</p>
+                <p class="old-money-title mt-8" style="font-size: 0.9rem; margin-top: 2.5rem;"></p>
             </div>
         </section>
 
@@ -769,19 +873,26 @@
                 <h2 class="section-title">Nuestra Historia</h2>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="img-placeholder"><img src="nosotros1.jpeg" alt="Nos conocimos"></div>
-                        <h3 class="story-title" style="color: var(--gold-dark); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem;">Donde nos conocimos</h3>
-                        <p style="opacity: 0.8;">Todo empezó con una mirada, una sonrisa y un partido ganado.</p>
+                        <div class="img-placeholder"><img src="1.jpg" alt="Nos conocimos"></div>
+                        <h3 class="story-title"
+                            style="color: var(--gold-dark); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem;">
+                            Donde nos conocimos</h3>
+                        <p style="opacity: 0.8;">Todo empezó con una mirada y una sonrisa.</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="img-placeholder"><img src="viaje.jpg" alt="Viaje"></div>
-                        <h3 class="story-title" style="color: var(--gold-dark); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem;">Nuestro primer viaje</h3>
-                        <p style="opacity: 0.8;">Nuestra primera aventura, descubriendo el mundo totalmente nuevo de a tres.</p>
+                        <div class="img-placeholder"><img src="2.jpg" alt="Viaje"></div>
+                        <h3 class="story-title"
+                            style="color: var(--gold-dark); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem;">
+                            Nuestro primer viaje</h3>
+                        <p style="opacity: 0.8;">Nuestra primera aventura, descubriendo el mundo totalmente nuevo.</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="img-placeholder"><img src="propuesta.jpg" alt="Compromiso"></div>
-                        <h3 class="story-title" style="color: var(--gold-dark); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem;">El gran paso</h3>
-                        <p style="opacity: 0.8;">Frente al mar decidimos que queríamos caminar juntos por siempre.</p>
+                        <div class="img-placeholder"><img src="3.jpg" alt="Compromiso"></div>
+                        <h3 class="story-title"
+                            style="color: var(--gold-dark); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem;">
+                            El gran paso</h3>
+                        <p style="opacity: 0.8;">Rodeados de naturaleza decidimos que queríamos caminar juntos por
+                            siempre.</p>
                     </div>
                 </div>
             </div>
@@ -803,7 +914,9 @@
         <!-- Adults Only -->
         <section class="reveal" style="min-height: auto; padding: 2rem 1.5rem;">
             <div class="glass-card">
-                <p class="font-serif italic text-2xl" style="color: var(--gold-dark); font-family: 'Playfair Display', serif; line-height: 1.6;">Queremos que todos puedan relajarse y disfrutar, por eso nuestra boda será solo para adultos.</p>
+                <p class="font-serif italic text-2xl"
+                    style="color: var(--gold-dark); font-family: 'Playfair Display', serif; line-height: 1.6;">Queremos
+                    que todos puedan relajarse y disfrutar, por eso nuestra boda será solo para adultos.</p>
             </div>
         </section>
 
@@ -811,18 +924,24 @@
         <section class="reveal">
             <div class="event-card glass-card">
                 <div class="icon-circle">
-                    <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="var(--blue-medium)" stroke-width="1.5" class="church-anim"><path d="M12 2L9 5V8H5V22H19V8H15V5L12 2Z"/></svg>
+                    <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="var(--blue-medium)"
+                        stroke-width="1.5" class="church-anim">
+                        <path d="M12 2L9 5V8H5V22H19V8H15V5L12 2Z" />
+                    </svg>
                 </div>
                 <h3 class="section-title">Ceremonia Religiosa</h3>
-                <p class="text-2xl mb-3 font-serif">13 de Marzo, 2027</p>
-                <p class="mb-3 text-lg" style="color: var(--gold-dark); font-weight: 600; letter-spacing: 2px;">17:00 HS</p>
-                <p class="opacity-70 mb-10 text-lg italic">Parroquia de Aguas Verdes</p>
-                <a href="https://maps.app.goo.gl/Ke4nBV8bT7HYhhy2A" target="_blank" class="btn secondary">¿Cómo llegar?</a>
+
+                <p class="mb-3 text-lg" style="color: var(--gold-dark); font-weight: 600; letter-spacing: 2px;">
+                </p>
+                <p class="opacity-70 mb-10 text-lg italic"></p>
+                <a href="https://maps.app.goo.gl/Ke4nBV8bT7HYhhy2A" target="_blank" class="btn secondary">¿Cómo
+                    llegar?</a>
             </div>
 
             <div class="event-card glass-card">
                 <div class="icon-circle">
-                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="var(--blue-medium)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cheers-anim">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="var(--blue-medium)"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cheers-anim">
                         <!-- Left Glass -->
                         <g class="glass-left">
                             <path d="M6 3h5v5c0 1.5-1 3-2.5 3S6 9.5 6 8V3zM8.5 11v7M7 21h3" />
@@ -832,14 +951,17 @@
                             <path d="M18 3h-5v5c0 1.5 1 3 2.5 3s2.5-1.5 2.5-3V3zM15.5 11v7M14 21h3" />
                         </g>
                         <!-- Sparkles -->
-                        <path d="M12 2v2M14 4l-1 1M10 4l1 1" class="sparkle-anim" stroke="var(--pink-soft)" stroke-width="2" />
+                        <path d="M12 2v2M14 4l-1 1M10 4l1 1" class="sparkle-anim" stroke="var(--pink-soft)"
+                            stroke-width="2" />
                     </svg>
                 </div>
                 <h3 class="section-title">Fiesta</h3>
-                <p class="text-2xl mb-3 font-serif">13 de Marzo, 2027</p>
-                <p class="mb-3 text-lg" style="color: var(--gold-dark); font-weight: 600; letter-spacing: 2px;">20:00 HS</p>
-                <p class="opacity-70 mb-10 text-lg italic">Salón Hotel Chiavari</p>
-                <a href="https://maps.app.goo.gl/faPc7V6jvvVnLjcc7" target="_blank" class="btn secondary">¿Cómo llegar?</a>
+
+                <p class="mb-3 text-lg" style="color: var(--gold-dark); font-weight: 600; letter-spacing: 2px;">
+                </p>
+
+                <a href="https://maps.app.goo.gl/faPc7V6jvvVnLjcc7" target="_blank" class="btn secondary">¿Cómo
+                    llegar?</a>
             </div>
         </section>
 
@@ -847,10 +969,13 @@
         <section class="dress-code-section reveal">
             <div class="glass-card">
                 <h2 class="section-title">Código de Vestimenta</h2>
-                <p class="dress-type" style="font-size: 1.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Elegante / Formal</p>
+                <p class="dress-type"
+                    style="font-size: 1.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Elegante /
+                    Formal</p>
                 <p class="dress-description" style="margin-bottom: 2rem; opacity: 0.8;">
                     Te dejamos algunos colores de sugerencia.<br>
-                    <strong style="color: var(--gold-dark);">Por favor recordá evitar colores claros, beige o blancos</strong>
+                    <strong style="color: var(--gold-dark);">
+                        Por favor recordá evitar colores claros, beige o blancos</strong>
                 </p>
                 <div class="color-palette">
                     <div class="color-item">
@@ -882,16 +1007,21 @@
             <div class="glass-card">
                 <h2 class="section-title">Regalos</h2>
                 <p class="text-lg mb-4 italic">Tu presencia es nuestro mejor regalo</p>
-                <p class="opacity-70 mb-2 leading-relaxed">Si querés hacernos un regalo, podés colaborar con nuestra luna de miel</p>
-                
+                <p class="opacity-70 mb-2 leading-relaxed">Si querés hacernos un regalo, podés colaborar con nuestra
+                    luna de miel</p>
+
                 <!-- Gift Icon Trigger -->
                 <div class="gift-trigger" onclick="toggleGifts()">
                     <div class="gift-icon-anim">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- Caja del regalo -->
                             <polyline points="20 12 20 22 4 22 4 12"></polyline>
                             <rect x="2" y="7" width="20" height="5"></rect>
                             <line x1="12" y1="22" x2="12" y2="7"></line>
+                            <!-- Moño izquierdo -->
                             <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                            <!-- Moño derecho -->
                             <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
                         </svg>
                     </div>
@@ -900,16 +1030,29 @@
 
                 <div id="bank-details-container" class="bank-details-wrapper">
                     <div class="bank-row">
-                        <div class="bank-info"><label>Titular</label><span id="bank-name">Ignacio Perez / Rocio Torrano</span></div>
-                        <button class="copy-btn" onclick="copyText('bank-name')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+                        <div class="bank-info"><label>Titular</label><span id="bank-name">
+                            </span></div>
+                        <button class="copy-btn" onclick="copyText('bank-name')"><svg width="22" height="22"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                            </svg></button>
                     </div>
                     <div class="bank-row">
                         <div class="bank-info"><label>CBU</label><span id="bank-cbu">0000000000000000000000</span></div>
-                        <button class="copy-btn" onclick="copyText('bank-cbu')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+                        <button class="copy-btn" onclick="copyText('bank-cbu')"><svg width="22" height="22"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                            </svg></button>
                     </div>
                     <div class="bank-row">
-                        <div class="bank-info"><label>Alias</label><span id="bank-alias">BODA.IGNACIO.ROCIO</span></div>
-                        <button class="copy-btn" onclick="copyText('bank-alias')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+                        <div class="bank-info"><label>Alias</label><span id="bank-alias">BODA</span></div>
+                        <button class="copy-btn" onclick="copyText('bank-alias')"><svg width="22" height="22"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                            </svg></button>
                     </div>
                 </div>
             </div>
@@ -919,17 +1062,23 @@
         <section class="reveal">
             <div class="glass-card">
                 <h2 class="section-title">¿Asistes a la fiesta?</h2>
-                <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbwVSo2GzUxYGscPX9CRsTsUVLL1lGa80ExZ3F47Im7Yu0XbGeSqBdvTKUcjbjTQ_gU80g/exec" method="POST" class="rsvp-form">
+                <form id="rsvp-form"
+                    action="https://script.google.com/macros/s/AKfycbwVSo2GzUxYGscPX9CRsTsUVLL1lGa80ExZ3F47Im7Yu0XbGeSqBdvTKUcjbjTQ_gU80g/exec"
+                    method="POST" class="rsvp-form">
                     <input type="hidden" name="_to" value="torranorocio9@gmail.com">
                     <div style="display: flex; justify-content: center; gap: 3rem; margin-bottom: 2.5rem;">
-                        <label style="cursor: pointer; font-weight: 600; color: var(--gold-dark);"><input type="radio" name="asiste" value="si" required style="accent-color: var(--gold);"> Sí, confirmo</label>
-                        <label style="cursor: pointer; font-weight: 600; color: var(--gold-dark);"><input type="radio" name="asiste" value="no" required style="accent-color: var(--gold);"> No puedo</label>
+                        <label style="cursor: pointer; font-weight: 600; color: var(--gold-dark);"><input type="radio"
+                                name="asiste" value="si" required style="accent-color: var(--gold);"> Sí,
+                            confirmo</label>
+                        <label style="cursor: pointer; font-weight: 600; color: var(--gold-dark);"><input type="radio"
+                                name="asiste" value="no" required style="accent-color: var(--gold);"> No puedo</label>
                     </div>
                     <div style="margin-bottom: 1.5rem;">
                         <input type="text" name="nombre" placeholder="Nombre Completo" required>
                     </div>
                     <div style="margin-bottom: 1.5rem;">
-                        <textarea name="mensaje" placeholder="Mensaje o dato importante (ej: celíaco)" rows="3"></textarea>
+                        <textarea name="mensaje" placeholder="Mensaje o dato importante (ej: celíaco)"
+                            rows="3"></textarea>
                     </div>
                     <p class="text-sm opacity-60 italic mb-8">Por favor confirma antes del 30 de enero</p>
                     <button type="submit" class="btn primary">Enviar Confirmación</button>
@@ -938,7 +1087,7 @@
         </section>
 
         <footer class="py-24 text-center">
-            <h2 class="section-title">Ignacio & Rocío</h2>
+            <h2 class="section-title"></h2>
             <p class="happily-ever-after" style="font-size: 2.5rem;">Y vivieron felices para siempre...</p>
         </footer>
     </main>
@@ -959,7 +1108,7 @@
             setTimeout(() => {
                 introOverlay.style.display = 'none';
                 envelopeWrapper.style.display = 'flex';
-                // Start background video as soon as envelope appears
+                // Show flores.mp4 as background immediately
                 bgVideoWrapper.style.opacity = '1';
                 bgVideo.play();
             }, 1200);
@@ -968,14 +1117,14 @@
         // --- Envelope Opening ---
         function openEnvelope() {
             if (envelope.classList.contains('open')) return;
-            
+
             envelope.classList.add('open');
-            
-            // Wait for flap to open, then slide card, then show content
+
+            // Show flores.mp4 background immediately on open
+            bgVideoWrapper.style.opacity = '1';
+            bgVideo.play();
+
             setTimeout(() => {
-                // Show pearl background image
-                bgVideoWrapper.style.opacity = '1';
-                
                 setTimeout(() => {
                     envelopeWrapper.style.opacity = '0';
                     setTimeout(() => {
@@ -987,7 +1136,7 @@
                             initScrollReveal();
                         }, 50);
                     }, 800);
-                }, 1500); // Dar tiempo a que la tarjeta suba
+                }, 1500);
             }, 800);
         }
 
@@ -1042,7 +1191,7 @@
         }
 
         // --- RSVP Form ---
-        document.getElementById('rsvp-form').onsubmit = function(e) {
+        document.getElementById('rsvp-form').onsubmit = function (e) {
             e.preventDefault();
             const btn = this.querySelector('button');
             btn.innerText = "Enviando...";
