@@ -8,7 +8,6 @@
     <meta name="description"
         content="Estás oficialmente invitado a la boda¡Únete a nosotros para una celebración mágica!">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,26 +16,16 @@
 
     <style>
         :root {
-            /* Floral Green Palette */
             --bg-ivory: #F9F9F4;
             --pearl: #FFFFFF;
             --blue-soft: #d3e0dc;
-            /* green-soft */
             --blue-medium: #a4c3b8;
-            /* green-medium */
             --blue-dark: #6b9080;
-            /* green-dark */
             --pink-soft: #f2e1e1;
-            /* soft-blush */
-            --text-dark: #2c3e34;
-            /* dark-green */
+            --text-dark: #5B1E2D;
+            --wine: #5B1E2D;
             --glass: rgba(255, 255, 255, 0.85);
             --glass-border: rgba(164, 195, 184, 0.3);
-            --envelope-watercolor: linear-gradient(135deg, #eaf2ed 0%, #cde4df 40%, #a4c3b8 100%);
-            --envelope-flap: linear-gradient(to bottom, #dbeae4 0%, #c1dbd3 100%);
-            --envelope-flap-down: linear-gradient(to top, #b4d1c7 0%, #9cbdae 100%);
-            --envelope-flap-side: linear-gradient(to right, #cfdfd8 0%, #b2ccc1 100%);
-            --envelope-flap-side-right: linear-gradient(to left, #cfdfd8 0%, #b2ccc1 100%);
         }
 
         * {
@@ -74,7 +63,7 @@
             object-fit: cover;
         }
 
-        /* --- Vertical Envelope Styles --- */
+        /* --- Pantalla Intermedia Ajustada --- */
         #envelope-wrapper {
             position: fixed;
             top: 0;
@@ -86,206 +75,112 @@
             display: none;
             align-items: center;
             justify-content: center;
-            perspective: 2500px;
             overflow: hidden;
+            transition: opacity 1.5s ease;
         }
 
-        .envelope {
+        .intro-mirror-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
             position: relative;
-            width: 90%;
-            max-width: 500px;
-            height: 350px;
-            background: var(--envelope-watercolor);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-            transform-style: preserve-3d;
-            cursor: pointer;
-            transition: transform 0.5s ease;
-            margin-top: 50px;
-        }
-
-        .envelope:hover {
-            transform: translateY(-10px);
-        }
-
-        .flap-top {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--envelope-flap);
-            clip-path: polygon(0 0, 100% 0, 50% 55%);
-            z-index: 6;
-            /* Delante de la tarjeta cuando está cerrado */
-            transform-origin: top;
-            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.01);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .flap-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--envelope-flap-down);
-            clip-path: polygon(0 100%, 100% 100%, 50% 45%);
-            z-index: 5;
-            /* Delante de la tarjeta siempre */
-            box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .flap-left {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--envelope-flap-side);
-            clip-path: polygon(0 0, 0 100%, 45% 50%);
-            z-index: 5;
-            /* Delante de la tarjeta siempre */
-        }
-
-        .flap-right {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--envelope-flap-side-right);
-            clip-path: polygon(100% 0, 100% 100%, 55% 50%);
-            z-index: 5;
-            /* Delante de la tarjeta siempre */
-        }
-
-        .pearl {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 45px;
-            height: 45px;
-            background: radial-gradient(circle at 30% 30%, #FFFFFF, #D5E1DF, #A4B8B0);
-            border-radius: 50%;
             z-index: 10;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset -2px -2px 10px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
         }
 
-        .pearl::after {
-            content: 'abrir';
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            text-align: center;
-            font-family: 'Dancing Script', cursive;
-            color: var(--blue-dark);
-            font-size: 1.2rem;
-            opacity: 0.8;
-            pointer-events: none;
-        }
-
-        .envelope.open .flap-top {
-            transform: rotateX(180deg);
-            z-index: 0;
-            /* Pasa atrás de todo al abrirse */
-            transition: transform 1s ease-in-out, z-index 0s 0.5s;
-        }
-
-        .envelope.open .pearl {
-            transform: translate(-50%, 150%) scale(0.5);
-            opacity: 0;
-        }
-
-        .envelope-card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            height: 95%;
-            background: white;
-            z-index: 1;
-            /* Siempre detrás de las solapas frontales */
-            padding: 20px;
-            text-align: center;
+        .intro-bottom {
+            width: 100%;
+            margin-bottom: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding-top: 60px;
-            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #F0F0F0;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            gap: 18px;
+            transition: opacity 0.5s ease;
         }
 
-        .envelope.open .envelope-card {
-            transform: translate(-50%, -115%);
-            transition-delay: 0.8s;
-            /* Espera a que la solapa esté casi abierta */
-            z-index: 2;
-            /* Pero sigue detrás de las solapas inferiores laterales */
-        }
-
-        .coral-decoration {
-            position: absolute;
+        /* --- Contenedor y Animación de Burbujas Masivas --- */
+        #bubble-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
             pointer-events: none;
             z-index: 5;
-            opacity: 0.7;
+            overflow: hidden;
         }
 
-        .coral-left {
-            bottom: 10px;
-            left: 10px;
-            width: 140px;
-            opacity: 0.3;
-            /* Más sutil */
+        .bubble {
+            position: absolute;
+            bottom: -80px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), rgba(91, 30, 45, 0.18) 60%, rgba(255, 255, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 50%;
+            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.5), 0 4px 10px rgba(0, 0, 0, 0.05);
+            /* Animación más lenta (4.5s) y subida ultra fluida */
+            animation: floatUpSlow 4.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
-        .coral-right {
-            bottom: 10px;
-            right: 10px;
-            width: 120px;
-            transform: scaleX(-1);
-            opacity: 0.3;
-            /* Más sutil */
+        .bubble::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 25%;
+            height: 25%;
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 50%;
         }
 
-        .magic-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-style: italic;
-            color: #000000;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .touch-hint {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--gold-dark);
-            margin-top: 30px;
-            animation: breathe 2.5s infinite ease-in-out;
-        }
-
-        @keyframes breathe {
-
-            0%,
+        @keyframes floatUpSlow {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.3);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            85% {
+                opacity: 1;
+            }
             100% {
-                opacity: 0.3;
-                transform: translateY(0);
+                transform: translateY(-125vh) translateX(var(--drift)) scale(1.2);
+                opacity: 0;
             }
+        }
 
-            50% {
-                opacity: 0.8;
-                transform: translateY(-5px);
-            }
+        /* --- El Botón Bordó estilizado a la izquierda --- */
+        .click-here {
+            position: absolute;
+            bottom: 50px;   
+            left: 50%;    
+            transform: translateX(-50%);
+            padding: 14px 36px;
+            border: 2px solid #5B1E2D;
+            border-radius: 40px;
+            background: rgba(91, 30, 45, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #5B1E2D;
+            font-family: 'Cinzel', serif;
+            font-size: .85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: .35s;
+            animation: pulse 2s infinite;
+        }
+  
+        .click-here:hover {
+            background: #5B1E2D;
+            color: white;
+            transform: scale(1.05) translateX(-48%);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) translateX(-50%); }
+            50% { transform: scale(1.06) translateX(-50%); }
         }
 
         /* --- Background Video --- */
@@ -299,13 +194,78 @@
             opacity: 0;
             transition: opacity 2s ease;
             overflow: hidden;
+            pointer-events: none;
+        }
+
+        #bg-video-wrapper.invitation-video-active {
+            z-index: 0;
+            opacity: 1;
+            background: #F9F9F4;
         }
 
         #bg-video {
-            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
             width: 100%;
             height: 100%;
+            transform: translate(-50%, -50%);
             object-fit: cover;
+        }
+
+        #bg-video-wrapper.final-video-active {
+            z-index: 6000;
+            opacity: 1;
+            background: #000;
+        }
+
+        #final-thanks-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 6100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(249, 249, 244, 0.96);
+            color: var(--wine);
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        #final-thanks-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .final-thanks-card {
+            max-width: 520px;
+        }
+
+        .final-thanks-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 8vw, 4.5rem);
+            font-style: italic;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .final-thanks-card p {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        #sparkle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* --- Main Content Layout --- */
@@ -313,7 +273,7 @@
             position: relative;
             z-index: 10;
             opacity: 0;
-            transition: opacity 1.5s ease;
+            transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
             display: none;
         }
 
@@ -329,27 +289,97 @@
             justify-content: center;
             align-items: center;
             padding: 10rem 1.5rem;
-            /* Aumentado el padding vertical de 6rem a 10rem */
             background: transparent;
         }
 
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 40px;
-            padding: 3.5rem 2.5rem;
+        .mirror-card {
+            background-image: url('espejo.png');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
             width: 100%;
-            max-width: 700px;
-            text-align: center;
-            box-shadow: 0 20px 45px rgba(74, 68, 53, 0.04);
+            max-width: 480px;
+            aspect-ratio: 736 / 1102;
+            padding: 24% 16% 22% 16%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 2rem auto;
+            background-color: transparent;
+            border: none;
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
         }
 
-        /* --- Typography & Styles --- */
+        .mirror-content {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mirror-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .mirror-inner {
+            margin: auto 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .simple-card {
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.22);
+            border-radius: 30px;
+            padding: 3.5rem 2.5rem;
+            width: 100%;
+            max-width: 680px;
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .simple-card,
+        .mirror-card {
+   --gold-outline: #d4af37;
+    --gold-outline-dark: #9c6d0b;
+    --gold-light: #fff7c2;
+    --gold-glow: rgba(255,215,80,.95);
+        }
+
+.simple-card :is(h1, h2, h3, p, label, span),
+.mirror-card :is(h1, p),
+.calendar-container,
+.dress-type,
+.dress-description,
+.touch-hint {
+    color: var(--wine);
+    text-shadow: none;
+}
+
+        .bank-info label,
+        .color-label,
+        .calendar-day-header {
+            text-shadow:
+                -0.35px -0.35px 0 rgba(212, 175, 55, 0.6),
+                 0.35px  0.35px 0 rgba(212, 175, 55, 0.6),
+                 0 0 6px rgba(255, 244, 190, 0.35);
+        }
+
         .old-money-title {
             font-family: 'Cinzel', serif;
-            color: #000000;
+            color: var(--wine);
             text-transform: uppercase;
             letter-spacing: 4px;
             font-weight: 700;
@@ -357,7 +387,7 @@
 
         .old-money-serif {
             font-family: 'Playfair Display', serif;
-            color: #000000;
+            color: var(--wine);
             font-style: italic;
         }
 
@@ -366,7 +396,7 @@
             font-size: 2.2rem;
             margin-bottom: 2rem;
             letter-spacing: 5px;
-            color: #000000;
+            color: var(--wine);
             text-transform: uppercase;
             font-weight: 600;
         }
@@ -374,8 +404,8 @@
         .intro-text {
             font-size: 1.1rem;
             margin-bottom: 2.5rem;
-            color: #000000;
-            line-height: 2.2;
+            color: var(--wine);
+            line-height: 2;
             opacity: 0.8;
             font-weight: 400;
             font-family: 'Libre Baskerville', serif;
@@ -383,18 +413,20 @@
 
         .happily-ever-after {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-style: italic;
-            color: #000000;
+            color: var(--wine);
             margin: 1.5rem 0;
             letter-spacing: 1px;
+            line-height: 1.3;
         }
 
         /* --- Timeline --- */
         .timeline {
             position: relative;
-            margin-top: 4rem;
+            margin-top: 3.5rem;
             padding-left: 20px;
+            width: 100%;
         }
 
         .timeline::before {
@@ -409,7 +441,7 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
             text-align: left;
             padding-left: 35px;
         }
@@ -429,8 +461,8 @@
 
         .img-placeholder {
             width: 100%;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.95);
+            height: 280px;
+            background: rgba(255, 255, 255, 0.92);
             border-radius: 20px;
             margin-bottom: 1.5rem;
             overflow: hidden;
@@ -449,95 +481,106 @@
             object-fit: cover;
         }
 
-        /* --- Countdown --- */
-        .countdown-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 40px;
-            padding: 4rem 2rem;
+        /* --- Calendar --- */
+        .calendar-container {
             width: 100%;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 20px 45px rgba(74, 68, 53, 0.04);
-        }
-
-        .countdown-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--real-gold);
-            margin-bottom: 2.5rem;
-            font-weight: 700;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-top: 1rem;
-        }
-
-        .time-box span {
-            font-size: 4rem;
-            font-weight: 800;
-            color: #000000;
-            display: block;
+            max-width: 320px;
+            margin: 0 auto;
             font-family: 'Outfit', sans-serif;
+            color: #2c3e34;
+            text-align: center;
+        }
+
+        .calendar-year {
+            font-size: 0.95rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 0.2rem;
+            color: #6b9080;
+            font-weight: 600;
+        }
+
+        .calendar-month {
+            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #000;
             line-height: 1;
         }
 
-        .time-box label {
-            font-size: 0.8rem;
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            row-gap: 12px;
+            column-gap: 8px;
+            margin-top: 10px;
+        }
+
+        .calendar-day-header {
+            font-weight: 700;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #000000;
-            opacity: 0.6;
-            margin-top: 15px;
-            display: block;
-            font-weight: 600;
-            font-family: 'Cinzel', serif;
+            color: #6b9080;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
 
-        @media (max-width: 768px) {
-            .countdown {
-                gap: 1rem;
-            }
-
-            .time-box span {
-                font-size: 2.5rem;
-            }
-
-            .countdown-title {
-                font-size: 2rem;
-            }
-
-            .countdown-card {
-                padding: 3rem 1.5rem;
-            }
+        .calendar-day {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #333;
+            aspect-ratio: 1;
         }
 
-        /* --- Events --- */
-        .event-card {
-            margin-bottom: 6rem;
-            /* Aumentado el espacio entre tarjetas */
+        .calendar-day.empty { pointer-events: none; }
+        .calendar-day.special-day { font-weight: 700; color: #b32d2d; }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: translate(-50%, -55%) scale(1.1) rotate(-3deg); }
+            50% { transform: translate(-50%, -55%) scale(1.3) rotate(3deg); }
         }
 
-        .event-card:last-child {
-            margin-bottom: 0;
+        .heart-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 44px;
+            height: 44px;
+            pointer-events: none;
+            animation: heartbeat 2s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        .heart-ring svg {
+            width: 100%;
+            height: 100%;
         }
 
         .icon-circle {
             width: 90px;
             height: 90px;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid var(--blue-soft);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 2.5rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+            filter: drop-shadow(0 3px 8px rgba(180,140,50,0.25));
+        }
+
+        .church-anim {
+            animation: church-sway 3s infinite ease-in-out;
+            transform-origin: bottom center;
+        }
+
+        @keyframes church-sway {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .cheers-anim .glass-left {
@@ -551,63 +594,20 @@
         }
 
         @keyframes clink-left {
-
-            0%,
-            100% {
-                transform: rotate(0deg);
-            }
-
-            50% {
-                transform: rotate(8deg);
-            }
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(8deg); }
         }
 
         @keyframes clink-right {
-
-            0%,
-            100% {
-                transform: rotate(0deg);
-            }
-
-            50% {
-                transform: rotate(-8deg);
-            }
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-8deg); }
         }
 
-        .church-anim {
-            animation: church-sway 3s infinite ease-in-out;
-            transform-origin: bottom center;
-        }
-
-        @keyframes church-sway {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .sparkle-anim {
-            animation: sparkle-fade 2s infinite ease-in-out;
-        }
+        .sparkle-anim { animation: sparkle-fade 2s infinite ease-in-out; }
 
         @keyframes sparkle-fade {
-
-            0%,
-            45%,
-            100% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
+            0%, 45%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
         /* --- Dress Code --- */
@@ -626,9 +626,7 @@
             transition: transform 0.3s ease;
         }
 
-        .color-item:hover {
-            transform: translateY(-5px);
-        }
+        .color-item:hover { transform: translateY(-5px); }
 
         .color-circle {
             width: 70px;
@@ -648,14 +646,14 @@
 
         .btn {
             display: inline-block;
-            padding: 1.2rem 3rem;
+            padding: 0.8rem 2.2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-family: 'Cinzel', serif;
             letter-spacing: 2px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
         }
 
@@ -688,66 +686,63 @@
         .bank-details-wrapper.show {
             max-height: 1000px;
             opacity: 1;
-            margin-top: 2.5rem;
+            margin-top: 1.5rem;
         }
 
         .gift-trigger {
             cursor: pointer;
             display: inline-block;
             transition: transform 0.3s ease;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
-        .gift-trigger:hover {
-            transform: scale(1.1);
-        }
+        .gift-trigger:hover { transform: scale(1.1); }
 
         .gift-icon-anim {
-            animation: giftBounce 2s infinite ease-in-out;
-            filter: drop-shadow(0 5px 15px rgba(107, 144, 128, 0.4));
+               animation: giftBounce 2s infinite ease-in-out;
+    filter:
+        drop-shadow(0 0 6px rgba(200,162,76,.45))
+        drop-shadow(0 0 12px rgba(255,220,120,.25));
         }
 
         @keyframes giftBounce {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(0);
-            }
-
-            25% {
-                transform: translateY(-10px) rotate(-5deg);
-            }
-
-            75% {
-                transform: translateY(-10px) rotate(5deg);
-            }
+            0%, 100% { transform: translateY(0) rotate(0); }
+            25% { transform: translateY(-10px) rotate(-5deg); }
+            75% { transform: translateY(-10px) rotate(5deg); }
         }
 
         .bank-row {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.52);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.8rem;
             text-align: left;
             border: 1px solid #f2f2f2;
             transition: border-color 0.3s ease;
+            width: 100%;
         }
 
-        .bank-row:hover {
-            border-color: var(--blue-soft);
-        }
+        .bank-row:hover { border-color: var(--blue-soft); }
 
         .bank-info label {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: var(--blue-dark);
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             opacity: 0.7;
+        }
+
+        .bank-info span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            word-break: break-all;
+            display: inline-block;
         }
 
         .copy-btn {
@@ -755,36 +750,27 @@
             border: none;
             color: var(--blue-dark);
             cursor: pointer;
-            padding: 12px;
+            padding: 8px;
             border-radius: 10px;
             transition: background 0.3s ease;
         }
 
-        .copy-btn:hover {
-            background: rgba(107, 144, 128, 0.08);
-        }
+        .copy-btn:hover { background: rgba(107, 144, 128, 0.08); }
 
-        /* --- RSVP Form --- */
-        input[type="text"],
-        textarea {
+        input[type="text"], textarea {
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.72);
             border: 1.5px solid #ececec;
-            border-radius: 18px;
-            padding: 1.4rem;
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
             color: var(--text-dark);
             font-family: inherit;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: border-color 0.3s ease;
         }
 
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--blue-medium);
-        }
+        input:focus, textarea:focus { outline: none; border-color: var(--blue-medium); }
 
-        /* --- Footer --- */
         footer {
             text-align: center;
             display: flex;
@@ -795,11 +781,6 @@
             padding: 6rem 1rem;
         }
 
-        .text-center {
-            text-align: center;
-        }
-
-        /* --- Animations --- */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -810,218 +791,219 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .happily-ever-after {
-                font-size: 2.8rem;
-            }
-        }
     </style>
 </head>
 
 <body>
 
-    <!-- Intro Video Overlay -->
     <div id="intro-overlay">
         <video id="intro-video" muted playsinline>
-            <source src="castillo.mp4" type="video/mp4">
+            <source src="entrada.mp4" type="video/mp4">
         </video>
     </div>
 
-    <!-- Envelope Wrapper -->
     <div id="envelope-wrapper">
-        <div class="envelope" id="main-envelope" onclick="openEnvelope()">
-            <div class="envelope-card">
-                <p class="magic-text">Donde comienza la magia</p>
-                <p class="old-money-title" style="font-size: 1rem; letter-spacing: 5px;"></p>
-            </div>
+        <div id="bubble-container"></div>
 
-            <div class="flap-left"></div>
-            <div class="flap-right"></div>
-            <div class="flap-bottom"></div>
-            <div class="flap-top"></div>
-            <div class="pearl"></div>
+        <div class="intro-mirror-content">
+            <div class="intro-bottom" id="intro-interactive-group">
+                <div class="intro-text-video">
+                 
+                </div>
+                <div class="click-here" onclick="openEnvelope()">
+                    Click aquí
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Main Content Container -->
     <div id="bg-video-wrapper">
-        <video id="bg-video" loop muted playsinline autoplay>
-            <source src="flores.mp4" type="video/mp4">
+        <video id="bg-video" src="ahorasi.mp4" muted playsinline preload="metadata">
+            <source src="ahorasi.mp4" type="video/mp4">
         </video>
     </div>
+
+    <div id="final-thanks-overlay" aria-live="polite">
+        <div class="final-thanks-card">
+            <h2>Gracias por confirmar</h2>
+            <p>Tu respuesta fue enviada</p>
+        </div>
+    </div>
+
+    <canvas id="sparkle-canvas"></canvas>
+
     <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero reveal">
-            <div class="glass-card">
-                <p class="intro-text">Como las flores que nacen en el primer día de primavera, nuestras almas se
-                    encontraron en el momento perfecto. Hoy, nuestro sueño se hace realidad y queremos que seas parte de
-                    nuestro...</p>
-                <h1 class="happily-ever-after">Y vivieron felices para siempre</h1>
-                <p class="old-money-title mt-8" style="font-size: 0.9rem; margin-top: 2.5rem;"></p>
+        <section class="hero reveal" style="padding-bottom: 2rem;">
+            <div class="mirror-card">
+                <div class="mirror-content">
+                    <div class="mirror-inner" style="margin: auto 0; padding-bottom: 20px;">
+                        <h1 class="happily-ever-after" style="font-size: 2.8rem; font-family: 'Cinzel', serif; font-style: normal; font-weight: 500; margin-bottom: 0.5rem; color: var(--wine); letter-spacing: 2px;">Ignacio</h1>
+                        <p class="old-money-serif" style="font-size: 2.2rem; margin: 0.2rem 0; color: var(--wine);">&</p>
+                        <h1 class="happily-ever-after" style="font-size: 2.8rem; font-family: 'Cinzel', serif; font-style: normal; font-weight: 500; margin-top: 0.5rem; color: var(--wine); letter-spacing: 2px;">Rocio</h1>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Nuestra Historia Section -->
+        <section class="reveal" style="padding-top: 2rem; padding-bottom: 5rem;">
+            <div class="simple-card">
+                <p class="intro-text">Nuestras almas se encontraron en el momento perfecto. Hoy, nuestro sueño se hace realidad y queremos que seas parte de nuestro</p>
+                <h1 class="happily-ever-after">felices para siempre</h1>
+            </div>
+        </section>
+
         <section class="reveal">
-            <div class="glass-card">
+            <div class="simple-card">
                 <h2 class="section-title">Nuestra Historia</h2>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="img-placeholder"><img src="1.jpg" alt="Nos conocimos"></div>
-                        <h3 class="story-title"
-                            style="color: var(--gold-dark); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem;">
-                            Donde nos conocimos</h3>
+                        <h3 class="story-title" style="color: var(--wine); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem; font-weight: bold;">Donde nos conocimos</h3>
                         <p style="opacity: 0.8;">Todo empezó con una mirada y una sonrisa.</p>
                     </div>
                     <div class="timeline-item">
                         <div class="img-placeholder"><img src="2.jpg" alt="Viaje"></div>
-                        <h3 class="story-title"
-                            style="color: var(--gold-dark); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem;">
-                            Nuestro primer viaje</h3>
+                        <h3 class="story-title" style="color: var(--wine); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem; font-weight: bold;">Nuestro primer viaje</h3>
                         <p style="opacity: 0.8;">Nuestra primera aventura, descubriendo el mundo totalmente nuevo.</p>
                     </div>
                     <div class="timeline-item">
                         <div class="img-placeholder"><img src="3.jpg" alt="Compromiso"></div>
-                        <h3 class="story-title"
-                            style="color: var(--gold-dark); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem;">
-                            El gran paso</h3>
-                        <p style="opacity: 0.8;">Rodeados de naturaleza decidimos que queríamos caminar juntos por
-                            siempre.</p>
+                        <h3 class="story-title" style="color: var(--wine); font-family: 'Playfair Display', serif; margin-bottom: 12px; font-size: 1.6rem; font-weight: bold;">El gran paso</h3>
+                        <p style="opacity: 0.8;">Rodeados de naturaleza decidimos que queríamos caminar juntos por siempre.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Countdown Section -->
         <section class="reveal">
-            <div class="countdown-card">
-                <h2 class="countdown-title">Falta muy poco...</h2>
-                <div id="countdown" class="countdown">
-                    <div class="time-box"><span id="days">00</span><label>Días</label></div>
-                    <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
-                    <div class="time-box"><span id="minutes">00</span><label>Minutos</label></div>
-                    <div class="time-box"><span id="seconds">00</span><label>Segundos</label></div>
+            <div class="simple-card">
+                <div class="calendar-container">
+                    <div class="calendar-year">2026</div>
+                    <div class="calendar-month">Diciembre</div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day-header">Do</div>
+                        <div class="calendar-day-header">Lu</div>
+                        <div class="calendar-day-header">Ma</div>
+                        <div class="calendar-day-header">Mi</div>
+                        <div class="calendar-day-header">Ju</div>
+                        <div class="calendar-day-header">Vi</div>
+                        <div class="calendar-day-header">Sa</div>
+
+                        <div class="calendar-day empty"></div>
+                        <div class="calendar-day empty"></div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+
+                        <div class="calendar-day special-day">
+                            19
+                            <div class="heart-ring">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 5.5c-1.5-2.5-4.5-3.5-7-1.5s-3 5.5-.5 8 6.5 6 7.5 6.5c1-.5 5-4 7.5-6.5s2-6-.5-8-5.5-1-7 1.5z" fill="rgba(255, 0, 0, 0.15)"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day empty"></div>
+                        <div class="calendar-day empty"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Adults Only -->
         <section class="reveal" style="min-height: auto; padding: 2rem 1.5rem;">
-            <div class="glass-card">
-                <p class="font-serif italic text-2xl"
-                    style="color: var(--gold-dark); font-family: 'Playfair Display', serif; line-height: 1.6;">Queremos
-                    que todos puedan relajarse y disfrutar, por eso nuestra boda será solo para adultos.</p>
+            <div class="simple-card">
+                <p class="old-money-serif" style="line-height: 1.6; font-size: 1.5rem;">
+                    Queremos que todos puedan relajarse y disfrutar, por eso nuestra boda será solo para adultos.
+                </p>
             </div>
         </section>
 
-        <!-- Events Section -->
         <section class="reveal">
-            <div class="event-card glass-card">
+            <div class="event-card simple-card">
                 <div class="icon-circle">
-                    <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="var(--blue-medium)"
-                        stroke-width="1.5" class="church-anim">
+                    <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="church-anim">
                         <path d="M12 2L9 5V8H5V22H19V8H15V5L12 2Z" />
                     </svg>
                 </div>
                 <h3 class="section-title">Ceremonia Religiosa</h3>
-
-                <p class="mb-3 text-lg" style="color: var(--gold-dark); font-weight: 600; letter-spacing: 2px;">
-                </p>
-                <p class="opacity-70 mb-10 text-lg italic"></p>
-                <a href="https://maps.app.goo.gl/Ke4nBV8bT7HYhhy2A" target="_blank" class="btn secondary">¿Cómo
-                    llegar?</a>
+                <a href="https://maps.google.com" target="_blank" class="btn-secondary">¿Cómo llegar?</a>
             </div>
 
-            <div class="event-card glass-card">
+            <div class="event-card simple-card">
                 <div class="icon-circle">
-                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="var(--blue-medium)"
-                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cheers-anim">
-                        <!-- Left Glass -->
-                        <g class="glass-left">
-                            <path d="M6 3h5v5c0 1.5-1 3-2.5 3S6 9.5 6 8V3zM8.5 11v7M7 21h3" />
-                        </g>
-                        <!-- Right Glass -->
-                        <g class="glass-right">
-                            <path d="M18 3h-5v5c0 1.5 1 3 2.5 3s2.5-1.5 2.5-3V3zM15.5 11v7M14 21h3" />
-                        </g>
-                        <!-- Sparkles -->
-                        <path d="M12 2v2M14 4l-1 1M10 4l1 1" class="sparkle-anim" stroke="var(--pink-soft)"
-                            stroke-width="2" />
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cheers-anim">
+                        <g class="glass-left"><path d="M6 3h5v5c0 1.5-1 3-2.5 3S6 9.5 6 8V3zM8.5 11v7M7 21h3" /></g>
+                        <g class="glass-right"><path d="M18 3h-5v5c0 1.5 1 3 2.5 3s2.5-1.5 2.5-3V3zM15.5 11v7M14 21h3" /></g>
+                    </g>
                     </svg>
                 </div>
                 <h3 class="section-title">Fiesta</h3>
-
-                <p class="mb-3 text-lg" style="color: var(--gold-dark); font-weight: 600; letter-spacing: 2px;">
-                </p>
-
-                <a href="https://maps.app.goo.gl/faPc7V6jvvVnLjcc7" target="_blank" class="btn secondary">¿Cómo
-                    llegar?</a>
+                <a href="https://maps.google.com" target="_blank" class="btn-secondary">¿Cómo llegar?</a>
             </div>
         </section>
 
-        <!-- Dress Code Section -->
         <section class="dress-code-section reveal">
-            <div class="glass-card">
+            <div class="simple-card">
                 <h2 class="section-title">Código de Vestimenta</h2>
-                <p class="dress-type"
-                    style="font-size: 1.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Elegante /
-                    Formal</p>
+                <p class="dress-type" style="font-size: 1.5rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Elegante / Formal</p>
                 <p class="dress-description" style="margin-bottom: 2rem; opacity: 0.8;">
                     Te dejamos algunos colores de sugerencia.<br>
-                    <strong style="color: var(--gold-dark);">
-                        Por favor recordá evitar colores claros, beige o blancos</strong>
+                    <strong style="color: var(--wine);">Por favor recordá evitar colores claros, beige o blancos</strong>
                 </p>
                 <div class="color-palette">
-                    <div class="color-item">
-                        <div class="color-circle" style="background-color: #3D141C;"></div>
-                        <span class="color-label">Bordo</span>
-                    </div>
-                    <div class="color-item">
-                        <div class="color-circle" style="background-color: #8D3A50;"></div>
-                        <span class="color-label">Rojo</span>
-                    </div>
-                    <div class="color-item">
-                        <div class="color-circle" style="background-color: #698277;"></div>
-                        <span class="color-label">Verde</span>
-                    </div>
-                    <div class="color-item">
-                        <div class="color-circle" style="background-color: #1E1B28;"></div>
-                        <span class="color-label">Negro</span>
-                    </div>
-                    <div class="color-item">
-                        <div class="color-circle" style="background-color: #33415E;"></div>
-                        <span class="color-label">Azul</span>
-                    </div>
+                    <div class="color-item"><div class="color-circle" style="background-color: #3D141C;"></div><span class="color-label">Bordo</span></div>
+                    <div class="color-item"><div class="color-circle" style="background-color: #8D3A50;"></div><span class="color-label">Rojo</span></div>
+                    <div class="color-item"><div class="color-circle" style="background-color: #698277;"></div><span class="color-label">Verde</span></div>
+                    <div class="color-item"><div class="color-circle" style="background-color: #1E1B28;"></div><span class="color-label">Negro</span></div>
+                    <div class="color-item"><div class="color-circle" style="background-color: #33415E;"></div><span class="color-label">Azul</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- Gifts Section -->
         <section class="reveal">
-            <div class="glass-card">
+            <div class="simple-card">
                 <h2 class="section-title">Regalos</h2>
                 <p class="text-lg mb-4 italic">Tu presencia es nuestro mejor regalo</p>
-                <p class="opacity-70 mb-2 leading-relaxed">Si querés hacernos un regalo, podés colaborar con nuestra
-                    luna de miel</p>
+                <p class="opacity-70 mb-2 leading-relaxed">Si querés hacernos un presente, podés colaborar con nuestra luna de miel</p>
 
-                <!-- Gift Icon Trigger -->
                 <div class="gift-trigger" onclick="toggleGifts()">
                     <div class="gift-icon-anim">
-                        <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <!-- Caja del regalo -->
+                        <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="20 12 20 22 4 22 4 12"></polyline>
                             <rect x="2" y="7" width="20" height="5"></rect>
                             <line x1="12" y1="22" x2="12" y2="7"></line>
-                            <!-- Moño izquierdo -->
                             <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
-                            <!-- Moño derecho -->
                             <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
                         </svg>
                     </div>
@@ -1030,55 +1012,35 @@
 
                 <div id="bank-details-container" class="bank-details-wrapper">
                     <div class="bank-row">
-                        <div class="bank-info"><label>Titular</label><span id="bank-name">
-                            </span></div>
-                        <button class="copy-btn" onclick="copyText('bank-name')"><svg width="22" height="22"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="9" y="9" width="13" height="13" rx="2" />
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                            </svg></button>
+                        <div class="bank-info"><label>Titular</label><span id="bank-name">Ignacio y Rocio</span></div>
+                        <button class="copy-btn" onclick="copyText('bank-name')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg></button>
                     </div>
                     <div class="bank-row">
                         <div class="bank-info"><label>CBU</label><span id="bank-cbu">0000000000000000000000</span></div>
-                        <button class="copy-btn" onclick="copyText('bank-cbu')"><svg width="22" height="22"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="9" y="9" width="13" height="13" rx="2" />
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                            </svg></button>
+                        <button class="copy-btn" onclick="copyText('bank-cbu')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg></button>
                     </div>
                     <div class="bank-row">
-                        <div class="bank-info"><label>Alias</label><span id="bank-alias">BODA</span></div>
-                        <button class="copy-btn" onclick="copyText('bank-alias')"><svg width="22" height="22"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="9" y="9" width="13" height="13" rx="2" />
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                            </svg></button>
+                        <div class="bank-info"><label>Alias</label><span id="bank-alias">BODA.IGNACIO.ROCIO</span></div>
+                        <button class="copy-btn" onclick="copyText('bank-alias')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- RSVP Section -->
         <section class="reveal">
-            <div class="glass-card">
+            <div class="simple-card">
                 <h2 class="section-title">¿Asistes a la fiesta?</h2>
-                <form id="rsvp-form"
-                    action="https://script.google.com/macros/s/AKfycbwVSo2GzUxYGscPX9CRsTsUVLL1lGa80ExZ3F47Im7Yu0XbGeSqBdvTKUcjbjTQ_gU80g/exec"
-                    method="POST" class="rsvp-form">
+                <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbwVSo2GzUxYGscPX9CRsTsUVLL1lGa80ExZ3F47Im7Yu0XbGeSqBdvTKUcjbjTQ_gU80g/exec" method="POST">
                     <input type="hidden" name="_to" value="torranorocio9@gmail.com">
                     <div style="display: flex; justify-content: center; gap: 3rem; margin-bottom: 2.5rem;">
-                        <label style="cursor: pointer; font-weight: 600; color: var(--gold-dark);"><input type="radio"
-                                name="asiste" value="si" required style="accent-color: var(--gold);"> Sí,
-                            confirmo</label>
-                        <label style="cursor: pointer; font-weight: 600; color: var(--gold-dark);"><input type="radio"
-                                name="asiste" value="no" required style="accent-color: var(--gold);"> No puedo</label>
+                        <label style="cursor: pointer; font-weight: 600;"><input type="radio" name="asiste" value="si" required> Sí, confirmo</label>
+                        <label style="cursor: pointer; font-weight: 600;"><input type="radio" name="asiste" value="no" required> No puedo</label>
                     </div>
                     <div style="margin-bottom: 1.5rem;">
                         <input type="text" name="nombre" placeholder="Nombre Completo" required>
                     </div>
                     <div style="margin-bottom: 1.5rem;">
-                        <textarea name="mensaje" placeholder="Mensaje o dato importante (ej: celíaco)"
-                            rows="3"></textarea>
+                        <textarea name="mensaje" placeholder="Mensaje o dato importante (ej: celíaco)" rows="3"></textarea>
                     </div>
                     <p class="text-sm opacity-60 italic mb-8">Por favor confirma antes del 30 de enero</p>
                     <button type="submit" class="btn primary">Enviar Confirmación</button>
@@ -1086,10 +1048,7 @@
             </div>
         </section>
 
-        <footer class="py-24 text-center">
-            <h2 class="section-title"></h2>
-            <p class="happily-ever-after" style="font-size: 2.5rem;">Y vivieron felices para siempre...</p>
-        </footer>
+      
     </main>
 
     <script>
@@ -1098,46 +1057,193 @@
         const introVideo = document.getElementById('intro-video');
         const envelopeWrapper = document.getElementById('envelope-wrapper');
         const mainContent = document.getElementById('main-content');
-        const envelope = document.getElementById('main-envelope');
         const bgVideoWrapper = document.getElementById('bg-video-wrapper');
         const bgVideo = document.getElementById('bg-video');
+        const finalThanksOverlay = document.getElementById('final-thanks-overlay');
 
-        // --- Intro Logic ---
+        // --- Animación de Estrellas de Fondo (Sparkles) ---
+        function initSparkles() {
+            const canvas = document.getElementById('sparkle-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const sparkles = [];
+            const SPARKLE_COUNT = 35;
+
+            function createSparkle() {
+                return {
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 3 + 1.5,
+                    maxSize: Math.random() * 6 + 3,
+                    opacity: Math.random(),
+                    speed: Math.random() * 0.015 + 0.005,
+                    phase: Math.random() * Math.PI * 2,
+                    rotationSpeed: (Math.random() - 0.5) * 0.02,
+                    rotation: Math.random() * Math.PI * 2,
+                    driftX: (Math.random() - 0.5) * 0.3,
+                    driftY: (Math.random() - 0.5) * 0.15,
+                    r: 200 + Math.floor(Math.random() * 55),
+                    g: 180 + Math.floor(Math.random() * 50),
+                    b: 120 + Math.floor(Math.random() * 40),
+                };
+            }
+
+            for (let i = 0; i < SPARKLE_COUNT; i++) sparkles.push(createSparkle());
+
+            function drawStar(cx, cy, spikes, outerR, innerR, rotation, opacity, r, g, b) {
+                ctx.save(); ctx.translate(cx, cy); ctx.rotate(rotation); ctx.beginPath();
+                for (let i = 0; i < spikes * 2; i++) {
+                    const radius = i % 2 === 0 ? outerR : innerR;
+                    const angle = (Math.PI / spikes) * i - Math.PI / 2;
+                    if (i === 0) ctx.moveTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+                    else ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+                }
+                ctx.closePath();
+                ctx.shadowColor = `rgba(${r}, ${g}, ${b}, ${opacity * 0.8})`; ctx.shadowBlur = outerR * 3;
+                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${opacity})`; ctx.fill();
+                ctx.shadowBlur = 0; ctx.beginPath(); ctx.arc(0, 0, innerR * 0.4, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 240, ${opacity * 0.9})`; ctx.fill(); ctx.restore();
+            }
+
+            function drawCross(cx, cy, size, rotation, opacity, r, g, b) {
+                ctx.save(); ctx.translate(cx, cy); ctx.rotate(rotation);
+                ctx.shadowColor = `rgba(${r}, ${g}, ${b}, ${opacity * 0.6})`; ctx.shadowBlur = size * 2.5;
+                ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${opacity})`; ctx.lineWidth = 1.2; ctx.beginPath();
+                ctx.moveTo(0, -size); ctx.lineTo(0, size); ctx.moveTo(-size, 0); ctx.lineTo(size, 0); ctx.stroke();
+                ctx.shadowBlur = 0; ctx.beginPath(); ctx.arc(0, 0, 1.2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 240, ${opacity})`; ctx.fill(); ctx.restore();
+            }
+
+            let time = 0;
+            function animate() {
+                ctx.clearRect(0, 0, width, height); time += 0.016;
+                sparkles.forEach((s, i) => {
+                    const pulse = Math.sin(time * s.speed * 60 + s.phase);
+                    const pulse2 = Math.sin(time * s.speed * 30 + s.phase * 1.7);
+                    s.opacity = 0.3 + (pulse * 0.5 + 0.5) * 0.7;
+                    const currentSize = s.size + (pulse2 * 0.5 + 0.5) * (s.maxSize - s.size);
+                    s.x += s.driftX * Math.sin(time * 0.5 + s.phase); s.y += s.driftY * Math.cos(time * 0.3 + s.phase);
+                    s.rotation += s.rotationSpeed;
+                    if (s.x < -20) s.x = width + 20; if (s.x > width + 20) s.x = -20;
+                    if (s.y < -20) s.y = height + 20; if (s.y > height + 20) s.y = -20;
+
+                    if (i % 3 === 0) drawCross(s.x, s.y, currentSize * 1.5, s.rotation, s.opacity, s.r, s.g, s.b);
+                    else if (i % 3 === 1) drawStar(s.x, s.y, 4, currentSize, currentSize * 0.3, s.rotation, s.opacity, s.r, s.g, s.b);
+                    else drawStar(s.x, s.y, 6, currentSize * 0.8, currentSize * 0.35, s.rotation, s.opacity, s.r, s.g, s.b);
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // --- Lógica del Video de Entrada (entrada.mp4) ---
+        function launchBubbles(total = 180, spawnWindow = 1600) {
+            const bubbleContainer = document.getElementById('bubble-container');
+            for (let i = 0; i < total; i++) {
+                setTimeout(() => {
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+                    const size = Math.random() * 34 + 10;
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    bubble.style.left = `${Math.random() * 100}%`;
+                    const duration = Math.random() * 1.4 + 3.8;
+                    bubble.style.animationDuration = `${duration}s`;
+                    bubble.style.setProperty('--drift', `${(Math.random() - 0.5) * 160}px`);
+                    bubbleContainer.appendChild(bubble);
+                    setTimeout(() => { bubble.remove(); }, duration * 1000);
+                }, Math.random() * spawnWindow);
+            }
+        }
+
         introVideo.onended = () => {
             introOverlay.style.opacity = '0';
             setTimeout(() => {
                 introOverlay.style.display = 'none';
                 envelopeWrapper.style.display = 'flex';
-                // Show flores.mp4 as background immediately
-                bgVideoWrapper.style.opacity = '1';
-                bgVideo.play();
+                launchBubbles();
             }, 1200);
         };
 
-        // --- Envelope Opening ---
+        // --- EXPLOSIÓN DE BURBUJAS LENTAS Y REVELACIÓN DE INVITACIÓN ---
         function openEnvelope() {
-            if (envelope.classList.contains('open')) return;
+            if (envelopeWrapper.classList.contains('open')) return;
+            envelopeWrapper.classList.add('open');
 
-            envelope.classList.add('open');
+            // 1. Desvanecer el texto y el botón de la intro suavemente
+            document.getElementById('intro-interactive-group').style.opacity = '0';
 
-            // Show flores.mp4 background immediately on open
-            bgVideoWrapper.style.opacity = '1';
-            bgVideo.play();
-
-            setTimeout(() => {
+            const bubbleContainer = document.getElementById('bubble-container');
+            
+            // 2. Disparar ráfaga masiva y continua de 500 burbujas lentas
+            const TOTAL_BUBBLES = 500;
+            for (let i = 0; i < TOTAL_BUBBLES; i++) {
+                // Escaladas aleatoriamente durante 1.8 segundos para una ráfaga continua y tupida
                 setTimeout(() => {
-                    envelopeWrapper.style.opacity = '0';
-                    setTimeout(() => {
-                        envelopeWrapper.style.display = 'none';
-                        mainContent.style.display = 'block';
-                        setTimeout(() => {
-                            mainContent.classList.add('visible');
-                            document.body.style.overflowY = 'auto';
-                            initScrollReveal();
-                        }, 50);
-                    }, 800);
-                }, 1500);
-            }, 800);
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+
+                    // Variedad de tamaños equilibrados
+                    const size = Math.random() * 38 + 12;
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+
+                    // Distribución horizontal uniforme
+                    bubble.style.left = `${Math.random() * 100}%`;
+
+                    // Duraciones lentas e individuales (entre 3.8s y 5.2s)
+                    const duration = Math.random() * 1.4 + 3.8;
+                    bubble.style.animationDuration = `${duration}s`;
+
+                    // Tambaleo horizontal sutil y fluido
+                    const drift = (Math.random() - 0.5) * 160;
+                    bubble.style.setProperty('--drift', `${drift}px`);
+
+                    bubbleContainer.appendChild(bubble);
+
+                    // Limpieza automática
+                    setTimeout(() => { bubble.remove(); }, duration * 1000);
+
+                }, Math.random() * 1800);
+            }
+            // 3. Mantener el video final oculto hasta enviar la confirmacion
+            if (bgVideo && bgVideoWrapper) {
+                bgVideo.pause();
+                bgVideo.src = 'fondo.mp4';
+                bgVideo.muted = true;
+                bgVideo.loop = true;
+                bgVideo.load();
+                bgVideoWrapper.classList.remove('final-video-active');
+                bgVideoWrapper.classList.add('invitation-video-active');
+                bgVideoWrapper.style.display = 'block';
+                bgVideoWrapper.style.opacity = '1';
+                bgVideo.play().catch(() => {});
+            }
+            document.body.style.backgroundColor = '#F9F9F4';
+
+            // 4. Activar el contenedor principal de fondo para que ya esté listo
+            mainContent.style.display = 'block';
+
+            // 5. Mientras las burbujas suben lento y llenan el cielo, desvanecemos la intro
+            setTimeout(() => {
+                envelopeWrapper.style.opacity = '0';
+                
+                setTimeout(() => {
+                    envelopeWrapper.style.display = 'none';
+                    // 6. Traer con elegancia la invitación (Ignacio & Rocio)
+                    mainContent.classList.add('visible');
+                    document.body.style.overflowY = 'auto'; // Habilitar scroll del mouse
+                    initScrollReveal(); // Lanzar efectos de movimiento
+                }, 1500); // Sincronizado en el clímax visual de la subida
+            }, 1200); 
         }
 
         // --- Auto-play handling ---
@@ -1145,35 +1251,14 @@
             introVideo.play().catch(() => {
                 introOverlay.style.display = 'none';
                 envelopeWrapper.style.display = 'flex';
+                launchBubbles();
             });
         });
 
         function toggleGifts() {
-            const container = document.getElementById('bank-details-container');
-            container.classList.toggle('show');
+            document.getElementById('bank-details-container').classList.toggle('show');
         }
 
-        // --- Countdown Timer ---
-        function initCountdown() {
-            const targetDate = new Date('2027-03-20T18:00:00').getTime();
-            const update = () => {
-                const now = new Date().getTime();
-                const diff = targetDate - now;
-                if (diff < 0) return;
-                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((diff % (1000 * 60)) / 1000);
-                document.getElementById('days').innerText = d.toString().padStart(2, '0');
-                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
-            };
-            setInterval(update, 1000);
-            update();
-        }
-
-        // --- Scroll Reveal ---
         function initScrollReveal() {
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries) => {
@@ -1184,32 +1269,80 @@
             reveals.forEach(r => observer.observe(r));
         }
 
-        // --- Utility ---
         function copyText(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text).then(() => alert("¡Copiado al portapapeles! ✨"));
         }
+        function closeInvitation() {
+            document.body.style.overflow = 'hidden';
+            mainContent.classList.remove('visible');
+            mainContent.style.display = 'none';
+            if (bgVideoWrapper) {
+                bgVideoWrapper.classList.remove('final-video-active');
+                bgVideoWrapper.classList.remove('invitation-video-active');
+                bgVideoWrapper.style.opacity = '0';
+            }
+            if (finalThanksOverlay) {
+                finalThanksOverlay.innerHTML = `<div class="final-thanks-card"><h2>Gracias</h2><p>La invitacion se cerro</p></div>`;
+                finalThanksOverlay.classList.add('show');
+            }
+            window.close();
+        }
+
+        function playFinalVideo() {
+            document.body.style.overflow = 'hidden';
+            mainContent.classList.remove('visible');
+
+            if (!bgVideo || !bgVideoWrapper) {
+                closeInvitation();
+                return;
+            }
+
+            bgVideoWrapper.style.display = 'block';
+            bgVideoWrapper.style.opacity = '1';
+            bgVideoWrapper.classList.remove('invitation-video-active');
+            bgVideoWrapper.classList.add('final-video-active');
+            bgVideo.src = 'ahorasi.mp4';
+            bgVideo.muted = true;
+            bgVideo.loop = false;
+            bgVideo.load();
+            try { bgVideo.currentTime = 0; } catch (error) {}
+
+            const playPromise = bgVideo.play();
+            if (playPromise) {
+                playPromise.catch(() => {
+                    bgVideo.controls = true;
+                    bgVideo.play().catch(() => {});
+                });
+            }
+
+            if (finalThanksOverlay) finalThanksOverlay.classList.add('show');
+            setTimeout(() => {
+                if (finalThanksOverlay) finalThanksOverlay.classList.remove('show');
+                mainContent.style.display = 'none';
+            }, 1200);
+        }
+
+        bgVideo.addEventListener('ended', closeInvitation);
 
         // --- RSVP Form ---
         document.getElementById('rsvp-form').onsubmit = function (e) {
             e.preventDefault();
             const btn = this.querySelector('button');
+            const form = this;
+            const formData = new FormData(form);
+            const formAction = form.action;
             btn.innerText = "Enviando...";
             btn.disabled = true;
-            fetch(this.action, { method: 'POST', body: new FormData(this), mode: 'no-cors' })
-                .then(() => {
-                    this.innerHTML = `<h3 class="section-title">¡Gracias por confirmar!</h3><p style="font-size: 1.2rem;">Tu respuesta ha sido guardada.</p>`;
-                })
-                .catch(() => {
-                    alert("Error al enviar. Intenta de nuevo.");
-                    btn.innerText = "Enviar";
-                    btn.disabled = false;
-                });
+            form.innerHTML = `<h3 class="section-title">Gracias por confirmar</h3><p style="font-size: 1.2rem;">Tu respuesta fue enviada.</p>`;
+            playFinalVideo();
+
+            fetch(formAction, { method: 'POST', body: formData, mode: 'no-cors' })
+                .catch(() => {});
         };
 
-        // --- Initial State ---
         document.addEventListener('DOMContentLoaded', () => {
-            initCountdown();
+            initSparkles();
             document.body.style.overflowY = 'hidden';
         });
     </script>

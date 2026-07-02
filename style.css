@@ -1,0 +1,875 @@
+:root {
+    /* Floral Green Palette */
+    --bg-ivory: #F9F9F4;
+    --pearl: #FFFFFF;
+    --blue-soft: #d3e0dc;
+    --blue-medium: #a4c3b8;
+    --blue-dark: #6b9080;
+    --pink-soft: #f2e1e1;
+    --text-dark: #5B1E2D;
+    --wine: #5B1E2D;
+    --glass: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(164, 195, 184, 0.3);
+    --envelope-watercolor: linear-gradient(135deg, #eaf2ed 0%, #cde4df 40%, #a4c3b8 100%);
+    --envelope-flap: linear-gradient(to bottom, #dbeae4 0%, #c1dbd3 100%);
+    --envelope-flap-down: linear-gradient(to top, #b4d1c7 0%, #9cbdae 100%);
+    --envelope-flap-side: linear-gradient(to right, #cfdfd8 0%, #b2ccc1 100%);
+    --envelope-flap-side-right: linear-gradient(to left, #cfdfd8 0%, #b2ccc1 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F9F9F4; /* Color base claro por defecto */
+    color: var(--text-dark);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* --- Intro Video Overlay --- */
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1.2s ease;
+}
+
+#intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Envelope / Mirror Wrapper --- */
+#envelope-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;            /* Activa el centrado dinámico */
+    justify-content: center;   /* Centra horizontalmente */
+    align-items: center;       /* Centra verticalmente */
+    background: var(--envelope-watercolor);
+    z-index: 50;               /* Se asegura de estar al frente de las burbujas */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#btn-open-envelope {
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    background-color: var(--wine);
+    color: var(--pearl);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(91, 30, 45, 0.3);
+    transition: transform 0.2s, background-color 0.2s;
+    
+    /* Resetea márgenes externos que puedan moverlo de posición */
+    margin: 0; 
+}
+
+#btn-open-envelope:hover {
+    transform: scale(1.05);
+    background-color: #4a1824;
+}
+.intro-mirror-content {
+    width: 100%;
+    height: 100vh; /* Fuerza a ocupar toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra el texto verticalmente */
+    position: relative;
+}
+
+.intro-text-video {
+    text-align: center;
+    color: #FFFFFF; /* Cambiado a blanco para que resalte sobre el video ahorasi.mp4 como en tu captura */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4); /* Sombra para mejorar legibilidad */
+}
+
+.vivieron {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.felices {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-style: italic;
+    line-height: 1.1;
+}
+
+.click-here {
+    position: absolute;
+    bottom: 50px; /* Distancia desde abajo */
+    left: 40%;    /* Sutilmente a la izquierda del centro */
+    transform: translateX(-50%);
+    padding: 14px 36px;
+    border: 2px solid #5B1E2D; /* Borde Bordó */
+    border-radius: 40px;
+    background: rgba(91, 30, 45, 0.25); /* Fondo Bordó traslúcido con blur */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #FFFFFF; /* Texto blanco para que resalte */
+    font-family: 'Cinzel', serif;
+    font-size: .85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .35s;
+    animation: pulse 2s infinite;
+    z-index: 50;
+}
+
+/* Cuando pasan el mouse por encima */
+.click-here:hover {
+    background: #5B1E2D; /* Se vuelve Bordó pleno */
+    color: #FFFFFF;      /* El texto se mantiene blanco */
+    transform: scale(1.05) translateX(-48%);
+    box-shadow: 0 0 15px rgba(91, 30, 45, 0.5); /* Destello sutil bordó */
+}
+
+/* Animación del latido manteniendo la posición izquierda */
+@keyframes pulse {
+    0%, 100% { transform: scale(1) translateX(-50%); }
+    50% { transform: scale(1.06) translateX(-50%); }
+}
+.intro-bottom {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.intro-text-video {
+    text-align: center;
+    color: #ffffff; /* Cambiado a blanco para contraste */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.vivieron {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.felices {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-style: italic;
+    line-height: 1.1;
+}
+
+/* --- Background Video Corección --- */
+#bg-video-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 2s ease;
+    overflow: hidden;
+    background-color: var(--bg-ivory);
+}
+
+#bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Cambiado de contain a cover para rellenar pantalla completa sin dejar blanco */
+}
+
+#sparkle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Cambiado a 1 para que flote por encima del fondo blanco */
+            pointer-events: none;
+        }
+
+/* --- Main Content Layout --- */
+#main-content {
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    display: none;
+}
+
+#main-content.visible {
+    opacity: 1;
+    display: block;
+}
+
+section {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem 1.5rem;
+    background: transparent;
+}
+
+/* --- Cards --- */
+.mirror-card {
+    background-image: url('espejo.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 90%;
+    max-width: 480px;
+    aspect-ratio: 736 / 1102;
+    padding: 24% 16% 22% 16%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 2rem auto;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
+}
+
+.mirror-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mirror-content::-webkit-scrollbar {
+    display: none;
+}
+
+.mirror-inner {
+    margin: auto 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.simple-card {
+    background: rgba(255, 255, 255, 0.75); /* Subido la opacidad para que se lea mejor sobre el video */
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 30px;
+    padding: 3.5rem 2.5rem;
+    width: 100%;
+    max-width: 680px;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+    margin: 2rem auto;
+    position: relative;
+}
+
+/* --- Typography & Styles --- */
+.old-money-title {
+    font-family: 'Cinzel', serif;
+    color: var(--wine);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 700;
+}
+
+.old-money-serif {
+    font-family: 'Playfair Display', serif;
+    color: var(--wine);
+    font-style: italic;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 5px;
+    color: var(--wine);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    color: var(--wine);
+    line-height: 2;
+    opacity: 0.8;
+    font-weight: 400;
+    font-family: 'Libre Baskerville', serif;
+}
+
+.happily-ever-after {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-style: italic;
+    color: var(--wine);
+    margin: 1.5rem 0;
+    letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+/* --- Timeline --- */
+.timeline {
+    position: relative;
+    margin-top: 3.5rem;
+    padding-left: 20px;
+    width: 100%;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--blue-soft), transparent);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3.5rem;
+    text-align: left;
+    padding-left: 35px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background: var(--blue-medium);
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(184, 201, 217, 0.3);
+}
+
+.img-placeholder {
+    width: 100%;
+    height: 280px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border: 6px solid white;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+    transition: transform 0.4s ease;
+}
+
+.img-placeholder:hover {
+    transform: scale(1.02) rotate(1deg);
+}
+
+.img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Calendar --- */
+.calendar-container {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    font-family: 'Outfit', sans-serif;
+    color: #2c3e34;
+    text-align: center;
+}
+
+.calendar-year {
+    font-size: 0.95rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 0.2rem;
+    color: #6b9080;
+    font-weight: 600;
+}
+
+.calendar-month {
+    font-size: 2.2rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    color: #000;
+    line-height: 1;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 12px;
+    column-gap: 8px;
+    margin-top: 10px;
+}
+
+.calendar-day-header {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #6b9080;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.calendar-day {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #333;
+    aspect-ratio: 1;
+}
+
+.calendar-day.empty {
+    pointer-events: none;
+}
+
+.calendar-day.special-day {
+    font-weight: 700;
+    color: #b32d2d;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: translate(-50%, -55%) scale(1.1) rotate(-3deg); }
+    50% { transform: translate(-50%, -55%) scale(1.3) rotate(3deg); }
+}
+
+.heart-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    pointer-events: none;
+    animation: heartbeat 2s infinite ease-in-out;
+    z-index: 1;
+}
+
+.heart-ring svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Events --- */
+.event-card {
+    margin-bottom: 6rem;
+}
+
+.event-card:last-child {
+    margin-bottom: 0;
+}
+
+.icon-circle {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2.5rem;
+    filter: drop-shadow(0 3px 8px rgba(180,140,50,0.25));
+}
+
+.cheers-anim .glass-left {
+    transform-origin: 8.5px 21px;
+    animation: clink-left 2.5s infinite ease-in-out;
+}
+
+.cheers-anim .glass-right {
+    transform-origin: 15.5px 21px;
+    animation: clink-right 2.5s infinite ease-in-out;
+}
+
+@keyframes clink-left {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(8deg); }
+}
+
+@keyframes clink-right {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-8deg); }
+}
+
+.church-anim {
+    animation: church-sway 3s infinite ease-in-out;
+    transform-origin: bottom center;
+}
+
+@keyframes church-sway {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.sparkle-anim {
+    animation: sparkle-fade 2s infinite ease-in-out;
+}
+
+@keyframes sparkle-fade {
+    0%, 45%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* --- Dress Code --- */
+.color-palette {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.color-item:hover {
+    transform: translateY(-5px);
+}
+
+.color-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.8rem;
+}
+
+.color-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.btn.primary {
+    background: var(--blue-medium);
+    color: white;
+    box-shadow: 0 10px 20px rgba(141, 167, 193, 0.2);
+}
+
+.btn.secondary {
+    display: inline-block !important;
+    background: transparent !important;       /* Sin fondo */
+    color: #5B1E2D !important;                /* Texto Bordó */
+    border: 2px solid #5B1E2D !important;     /* Solo el borde Bordó */
+    border-radius: 40px !important;           /* Redondeado elegante */
+    padding: 12px 34px !important;
+    font-family: 'Cinzel', serif !important;  /* Tipografía Old Money */
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    font-size: 0.85rem !important;
+    text-decoration: none !important;         /* Le quita el subrayado feo */
+    transition: all 0.35s ease !important;
+    cursor: pointer;
+}
+
+/* Al pasar el mouse por encima (Hover) */
+.btn.secondary:hover {
+    background: #5B1E2D !important;           /* Se rellena de Bordó */
+    color: #D4AF37 !important;                /* El texto pasa a Dorado */
+    border-color: #D4AF37 !important;         /* El borde se vuelve Dorado */
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4) !important;
+}
+/* --- Bank Details --- */
+.bank-details-wrapper {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 0;
+}
+
+.bank-details-wrapper.show {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 1.5rem;
+}
+
+.gift-trigger {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    margin: 1.5rem 0;
+}
+
+.gift-trigger:hover {
+    transform: scale(1.1);
+}
+
+.gift-icon-anim {
+    animation: giftBounce 2s infinite ease-in-out;
+    filter: drop-shadow(0 5px 15px rgba(107, 144, 128, 0.4));
+}
+
+@keyframes giftBounce {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    25% { transform: translateY(-10px) rotate(-5deg); }
+    75% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.bank-row {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    text-align: left;
+    border: 1px solid #f2f2f2;
+    transition: border-color 0.3s ease;
+    width: 100%;
+}
+
+.bank-row:hover {
+    border-color: var(--blue-soft);
+}
+
+.bank-info label {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--blue-dark);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.3rem;
+    opacity: 0.7;
+}
+
+.bank-info span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    word-break: break-all;
+    display: inline-block;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: var(--blue-dark);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: rgba(107, 144, 128, 0.08);
+}
+
+/* --- Forms --- */
+input[type="text"],
+textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid #ececec;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    color: var(--text-dark);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--blue-medium);
+}
+
+/* --- Animations --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.click-here {
+    padding: 14px 36px;
+    border: 1px solid #ffffff;
+    border-radius: 40px;
+    background: rgba(255,255,255,.25);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-family: 'Cinzel', serif;
+    font-size: .8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .35s;
+    animation: pulse 2s infinite;
+}
+
+.click-here:hover {
+    background: #ffffff;
+    color: var(--wine);
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+/* --- Cortina de Transición (fondo2.jpg) --- */
+#transition-curtain {
+    position: fixed;
+    top: 100%; /* Empieza abajo de todo, escondida */
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    z-index: 30; /* Por encima del video, por debajo del botón */
+    transition: top 1.8s cubic-bezier(0.19, 1, 0.22, 1); /* Transición suave de subida */
+}
+
+#transition-curtain.raise {
+    top: 0; /* Sube y cubre toda la pantalla */
+}
+
+/* --- Contenedor de Burbujas --- */
+/* --- Contenedor de Burbujas --- */
+#bubble-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 40;
+    overflow: hidden;
+}
+
+/* --- Estilo de cada burbuja --- */
+.bubble {
+    position: absolute;
+    bottom: -80px; /* Empiezan saliendo desde abajo del borde de la pantalla */
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), rgba(91, 30, 45, 0.2) 60%, rgba(255, 255, 255, 0.1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.5), 0 4px 10px rgba(0, 0, 0, 0.05);
+    animation: floatUp 2.5s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+}
+
+/* Brillo interior reflejado en la burbuja */
+.bubble::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 25%;
+    height: 25%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+/* Animación que hace subir y tambalear masivamente las burbujas */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0) scale(0.3);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh) translateX(var(--drift)) scale(1.2);
+        opacity: 0; /* Se desvanecen arriba del todo */
+    }
+}
+
+/* --- Botón Opción 2: Old Money Elegante --- */
+.btn-location {
+    display: inline-block;
+    padding: 12px 36px;
+    background: transparent !important; /* Fuerza a que no tenga fondo */
+    border: 2px solid var(--wine);      /* Usa tu variable de color bordó */
+    border-radius: 40px;                /* Forma redondeada */
+    color: var(--wine) !important;      /* Texto en color bordó */
+    font-family: 'Cinzel', serif;       /* Tu tipografía elegante */
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 3px;                /* Espaciado elegante */
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Cuando apoyás el mouse (Hover) */
+.btn-location:hover {
+    background: var(--wine) !important; /* Se rellena de bordó */
+    color: #D4AF37 !important;          /* El texto pasa a dorado */
+    transform: translateY(-3px);        /* Leve elevación sutil */
+    box-shadow: 0 10px 20px rgba(91, 30, 45, 0.2);
+}
