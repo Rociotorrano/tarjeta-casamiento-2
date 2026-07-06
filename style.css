@@ -603,9 +603,14 @@ section {
 }
 
 .btn.primary {
-    background: var(--blue-medium);
+    background: var(--wine);
     color: white;
-    box-shadow: 0 10px 20px rgba(141, 167, 193, 0.2);
+    box-shadow: 0 10px 20px rgba(91, 30, 45, 0.25);
+}
+
+.btn.primary:hover {
+    background: #4a1824;
+    box-shadow: 0 15px 30px rgba(91, 30, 45, 0.35);
 }
 
 .btn.secondary {
