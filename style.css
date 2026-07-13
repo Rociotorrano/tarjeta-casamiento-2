@@ -27,6 +27,9 @@ body {
     background-color: #F9F9F4; /* Color base claro por defecto */
     color: var(--text-dark);
     font-family: 'Outfit', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.9), 0px 0px 8px rgba(255, 255, 255, 0.7);
     overflow-x: hidden;
     line-height: 1.6;
 }
